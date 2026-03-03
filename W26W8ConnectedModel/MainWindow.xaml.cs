@@ -54,8 +54,14 @@ namespace W26W8ConnectedModel
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string query = "select EmployeeID, FirstName, LastName, City, Country from Employees where FirstName='" + txtFirstname.Text + "'";
+                // string concatenation - AVOID
+                //string query = "select EmployeeID, FirstName, LastName, City, Country from Employees where FirstName='" + txtFirstname.Text + "'";
+
+                // parameterized query - RECOMMENDED
+                string query = "select EmployeeID, FirstName, LastName, City, Country from Employees where FirstName=@fn";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("fn", txtFirstname.Text);
 
                 conn.Open();
 

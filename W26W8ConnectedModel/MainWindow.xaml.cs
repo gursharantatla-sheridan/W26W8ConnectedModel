@@ -101,7 +101,10 @@ namespace W26W8ConnectedModel
                 int result = cmd.ExecuteNonQuery();
 
                 if (result == 1)
+                {
+                    LoadData();
                     MessageBox.Show("New employee added");
+                }
                 else
                     MessageBox.Show("New employee not added");
             }
